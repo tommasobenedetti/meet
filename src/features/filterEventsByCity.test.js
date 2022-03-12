@@ -1,6 +1,6 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { extractLocations } from "../api";
+import { extractLocations } from "./api";
 import { mount, shallow } from 'enzyme';
 import CitySearch from '../CitySearch';
 import App from '../App';
