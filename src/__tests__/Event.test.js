@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Event from '../Event';
+import { Event } from '../Event';
 import { mockData } from '../mock-data';
 
 describe('<EventList /> component', () => {
@@ -48,15 +48,5 @@ describe('<EventList /> component', () => {
         EventWrapper.find('.hide-details').simulate('click');
         expect(EventWrapper.state('collapsed')).toBe(true);
     });
-
-    test('render htmlLink', () => {
-        expect(EventWrapper.find('.htmlLink')).toHaveLength(1);
-    });
-
-    test('render description', () => {
-        expect(EventWrapper.find('.description')).toHaveLength(1);
-    });
-
-
 
 });
