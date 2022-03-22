@@ -36,7 +36,7 @@ class App extends Component {
     if (!navigator.onLine) {
       this.setState({
         OfflineText:
-          "Sorry to tell you that you are offline, the events won't be updated!",
+          "Sorry but you are offline, this list is not up to date!",
       });
     } else {
       this.setState({
