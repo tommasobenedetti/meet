@@ -12,6 +12,10 @@ html {
   background-image: url(https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjM1My1maWxtZnVsLTIwLXNpbXBsZXBhdHRlcm5fMi5qcGc.jpg?s=yxbiRo628jKH39pjKAJaAS0Ja1ZJ6oPrIG9Gc7oqi1o);
 }
 
+.svg.recharts.wrapper {
+  background-color: #fff;
+}
+
 ul {
   padding: 0;
   list-style: none;
@@ -27,6 +31,18 @@ p {
 }
 .showSuggestions {
   display: block;
+}
+
+.google-btn {
+  box-shadow: 0px;
+}
+
+.recharts-surface {
+  background-color: white;
+}
+
+.tspan {
+  background-color: white;
 }
 
 input[type="text"],
@@ -215,11 +231,15 @@ input[type="number"] {
 }
 .btn-text {
   float: right;
-  margin: 11px 11px 0 0;
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
   font-family: "Roboto";
+}
+
+.WelcomeScreen {
+  width: 100%;
+  position: cover;
 }
 
 .Alert {
