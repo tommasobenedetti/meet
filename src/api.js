@@ -8,15 +8,7 @@ export const extractLocations = (events) => {
     return locations;
 };
 
-export const checkToken = async (accessToken) => {
-    const result = await fetch(
-        `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
-    )
-        .then((res) => res.json())
-        .catch((error) => error.json());
 
-    return result;
-};
 
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
@@ -42,9 +34,10 @@ export const getEvents = async () => {
     }
 
     if (!navigator.onLine) {
+        console.log("The user is offline")
         const data = localStorage.getItem("lastEvents");
         NProgress.done();
-        return data ? JSON.parse(data).events : [];;
+        return JSON.parse(data).events;
     }
 
 
@@ -97,3 +90,13 @@ export const getAccessToken = async () => {
     }
     return accessToken;
 }
+export const checkToken = async (accessToken) => {
+    const result = await fetch(
+        `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
+    )
+        .then((res) => res.json())
+        .catch((error) => error.json());
+
+    return result;
+};
+
