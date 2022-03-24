@@ -26,6 +26,7 @@ const getToken = async (code) => {
 };
 
 export const getEvents = async () => {
+    console.log(navigator)
     NProgress.start();
 
     if (window.location.href.startsWith("http://localhost")) {
