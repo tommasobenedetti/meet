@@ -20,21 +20,22 @@ class App extends Component {
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
+      console.log(events)
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
       }
     });
+    // if (!navigator.onLine) {
+    //   this.setState({
+    //     OfflineText:
+    //       “Sorry but you are offline, this list is not up to date!“,
+    //   });
+    // } else {
+    //   this.setState({
+    //     OfflineText: “”,
+    //   });
+    // }
 
-    if (!navigator.onLine) {
-      this.setState({
-        OfflineText:
-          "Sorry but you are offline, this list is not up to date!",
-      });
-    } else {
-      this.setState({
-        OfflineText: "",
-      });
-    }
 
 
     if (!navigator.onLine) {
@@ -75,8 +76,6 @@ class App extends Component {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents />
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
