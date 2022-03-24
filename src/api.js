@@ -33,20 +33,6 @@ const getToken = async (code) => {
     return access_token;
 };
 
-const removeQuery = () => {
-    if (window.history.pushState && window.location.pathname) {
-        var newurl =
-            window.location.protocol +
-            "//" +
-            window.location.host +
-            window.location.pathname;
-        window.history.pushState("", "", newurl);
-    } else {
-        newurl = window.location.protocol + "//" + window.location.host;
-        window.history.pushState("", "", newurl);
-    }
-};
-
 export const getEvents = async () => {
     NProgress.start();
 
@@ -75,6 +61,20 @@ export const getEvents = async () => {
         }
         NProgress.done();
         return result.data.events;
+    }
+};
+
+const removeQuery = () => {
+    if (window.history.pushState && window.location.pathname) {
+        var newurl =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            window.location.pathname;
+        window.history.pushState("", "", newurl);
+    } else {
+        newurl = window.location.protocol + "//" + window.location.host;
+        window.history.pushState("", "", newurl);
     }
 };
 
