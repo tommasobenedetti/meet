@@ -68,9 +68,7 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
-      className="App" />
-    const { OfflineText } = this.state;
+
     return (
       <div className="App">
         <OfflineAlert text={OfflineText} />
