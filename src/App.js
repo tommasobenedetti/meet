@@ -25,16 +25,16 @@ class App extends Component {
         this.setState({ events, locations: extractLocations(events) });
       }
     });
-    // if (!navigator.onLine) {
-    //   this.setState({
-    //     OfflineText:
-    //       “Sorry but you are offline, this list is not up to date!“,
-    //   });
-    // } else {
-    //   this.setState({
-    //     OfflineText: “”,
-    //   });
-    // }
+    if (!navigator.onLine) {
+      this.setState({
+        OfflineText:
+          "Sorry but you are offline, this list is not up to date!",
+      });
+    } else {
+      this.setState({
+        OfflineText: "",
+      });
+    }
 
 
 
@@ -69,10 +69,10 @@ class App extends Component {
   };
 
   render() {
-
+    const { events, locations, numberOfEvents, OfflineText } = this.state;
     return (
       <div className="App">
-
+        <OfflineAlert text={OfflineText} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents />
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
