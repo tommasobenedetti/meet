@@ -52,6 +52,19 @@ class App extends Component {
         OfflineText: "",
       });
     }
+
+
+
+    if (!navigator.onLine) {
+      this.setState({
+        OfflineText:
+          "Sorry but you are offline, this list is not up to date!",
+      });
+    } else {
+      this.setState({
+        OfflineText: "",
+      });
+    }
   }
 
   componentWillUnmount() {
