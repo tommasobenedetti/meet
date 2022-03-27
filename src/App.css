@@ -34,11 +34,11 @@ p {
 }
 
 .recharts-surface {
-  background-color: white;
+  background-color: #f3f0ed;
 }
 
 .tspan {
-  background-color: white;
+  background-color: #f3f0ed;
 }
 
 input[type="text"],
