@@ -40,6 +40,12 @@ class CitySearch extends Component {
         this.props.updateEvents(suggestion);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.locations !== prevProps.locations) {
+            this.setState({ suggestions: this.props.locations });
+        }
+    }
+
     render() {
         return (
             <div className="CitySearch">
