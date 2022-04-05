@@ -76,11 +76,14 @@ class App extends Component {
       if (this.mounted) {
         this.setState({
           events: locationEvents.slice(0, this.state.numberOfEvents),
+          location: location,
           currentLocation: location,
         });
       }
     });
   };
+
+  //get data for scatterplot graph:
 
   getData = () => {
     const { locations, events } = this.state;
@@ -97,7 +100,7 @@ class App extends Component {
     return (
       <div className="App">
         <OfflineAlert text={OfflineText} />
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <CitySearch locations={locations} numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
         <NumberOfEvents updateNumberOfEvents={(number) => { this.updateNumberOfEvents(number); }} />
         <h4>Events in each city</h4>
         <div className="data-vis-wrapper">
@@ -112,7 +115,7 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
+        <EventList events={events} numberOfEvents={numberOfEvents} />
       </div>
     );
   }
