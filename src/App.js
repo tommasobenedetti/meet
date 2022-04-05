@@ -21,21 +21,8 @@ class App extends Component {
     showWelcomeScreen: undefined,
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false :
-      true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
-        }
-      });
-    }
     getEvents().then((events) => {
       console.log(events)
       if (this.mounted) {
@@ -109,13 +96,11 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
-      className="App" />
-    const { events, locations, OfflineText } = this.state;
+    const { events, locations, numberOfEvents, OfflineText } = this.state;
     return (
       <div className="App">
         <OfflineAlert text={OfflineText} />
-        <CitySearch locations={locations} numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
+        <CitySearch locations={locations} numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
         <NumberOfEvents updateNumberOfEvents={(number) => { this.updateNumberOfEvents(number); }} />
         <h4>Events in each city</h4>
         <div className="data-vis-wrapper">
@@ -130,9 +115,7 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} />
+        <EventList events={events} numberOfEvents={numberOfEvents} />
       </div>
     );
   }
