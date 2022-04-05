@@ -26,7 +26,10 @@ class App extends Component {
     getEvents().then((events) => {
       console.log(events)
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({
+          events: events.slice(0, this.state.numberOfEvents),
+          locations: extractLocations(events),
+        });
       }
     });
     if (!navigator.onLine) {
@@ -39,8 +42,6 @@ class App extends Component {
         OfflineText: "",
       });
     }
-
-
 
     if (!navigator.onLine) {
       this.setState({
@@ -58,6 +59,15 @@ class App extends Component {
     this.mounted = false;
   }
 
+  updateNumberOfEvents = (numberOfEvents) => {
+    this.setState(
+      {
+        numberOfEvents,
+      },
+      this.updateEvents(this.state.location, numberOfEvents)
+    );
+  };
+
   updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
@@ -65,7 +75,7 @@ class App extends Component {
         events.filter((event) => event.location === location);
       if (this.mounted) {
         this.setState({
-          events: locationEvents.slice(0, eventCount),
+          events: locationEvents.slice(0, this.state.numberOfEvents),
           currentLocation: location,
         });
       }
@@ -88,7 +98,7 @@ class App extends Component {
       <div className="App">
         <OfflineAlert text={OfflineText} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <NumberOfEvents updateNumberOfEvents={(number) => { this.updateNumberOfEvents(number); }} />
         <h4>Events in each city</h4>
         <div className="data-vis-wrapper">
           <EventGenre events={this.state.events} />
