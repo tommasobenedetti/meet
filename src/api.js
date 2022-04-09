@@ -8,22 +8,17 @@ export const extractLocations = (events) => {
     return locations;
 };
 
-
-
-export const getToken = async (code) => {
-    const encodeCode = encodeURIComponent(code);
-    const { access_token } = await fetch(
-        'https://bokp5t9nbh.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+export const checkToken = async (accessToken) => {
+    const result = await fetch(
+        `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
-        .then((res) => {
-            return res.json();
-        })
+        .then((res) => res.json())
         .catch((error) => error);
 
-    access_token && localStorage.setItem("access_token", access_token);
-
-    return access_token;
+    return result;
 };
+
+
 
 export const getEvents = async () => {
     console.log(navigator)
@@ -40,7 +35,6 @@ export const getEvents = async () => {
         NProgress.done();
         return JSON.parse(data).events;
     }
-
 
     const token = await getAccessToken();
 
@@ -72,6 +66,21 @@ const removeQuery = () => {
     }
 };
 
+export const getToken = async (code) => {
+    const encodeCode = encodeURIComponent(code);
+    const { access_token } = await fetch(
+        'https://bokp5t9nbh.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+    )
+        .then((res) => {
+            return res.json();
+        })
+        .catch((error) => error);
+
+    access_token && localStorage.setItem("access_token", access_token);
+
+    return access_token;
+};
+
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem('access_token');
     const tokenCheck = accessToken && (await checkToken(accessToken));
@@ -91,13 +100,4 @@ export const getAccessToken = async () => {
     }
     return accessToken;
 }
-export const checkToken = async (accessToken) => {
-    const result = await fetch(
-        `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
-    )
-        .then((res) => res.json())
-        .catch((error) => error);
-
-    return result;
-};
 
