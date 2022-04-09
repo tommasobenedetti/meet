@@ -10,7 +10,7 @@ export const extractLocations = (events) => {
 
 
 
-const getToken = async (code) => {
+export const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
     const { access_token } = await fetch(
         'https://bokp5t9nbh.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
