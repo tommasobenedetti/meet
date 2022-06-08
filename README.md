@@ -17,7 +17,7 @@ A React application. Built using the TDD technique. Uses the Google Calendar API
 # Get Started
 
 
-- Clone the project ```https://github.com/Droidca/meet-up.git```
+- Clone the project ```https://github.com/tommasobenedetti/meet.git```
 - Open your terminal
 - cd to the project diretory
 - $npm run start
