@@ -21,3 +21,17 @@ A React application. Built using the TDD technique. Uses the Google Calendar API
 - Open your terminal
 - cd to the project diretory
 - $npm run start
+
+# Deployment
+
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+# Demo
+
+### <a href="https://tommasobenedetti.github.io/meet/)">LIVE DEMO</a> 
